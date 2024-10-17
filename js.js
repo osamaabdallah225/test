@@ -671,7 +671,7 @@ if (window.innerWidth < 600) {
 
 function checkUpdateNumber() {
     // تعيين نسخة جديدة للتطبيق في localStorage
-    const appVersion = '1.5.0';
+    const appVersion = '1.6.0';
     const savedVersion = localStorage.getItem('appVersion');
 
     if (savedVersion !== appVersion) {
