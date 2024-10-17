@@ -10,6 +10,7 @@ body {
 }
 
 * {
+    -webkit-tap-highlight-color: transparent; /* لأجهزة اللمس */
     box-sizing: border-box;
 }
 
@@ -129,7 +130,7 @@ h1 {
   /* تنسيق التولتيب (النص المخفي في البداية) */
   .tooltip .tooltiptext {
     visibility: hidden;
-    width: 350px;
+    width: 330px;
     background-color: rgb(238, 231, 231);
     color: tomato;
     text-align: center;
@@ -150,12 +151,12 @@ h1 {
     opacity: 1;
   }
 /*  خط التول تب */
-  span {
-    font-size: 22px;
-    line-height: 1.4;
-    border-radius: 5px;
-    
-  }
+.tooltiptext {
+    font-size: 29px;
+}
+
+
+
   
   
 .button-only{
@@ -390,8 +391,8 @@ ul li {
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
     cursor: pointer;
-    border: none;
-    outline: none;
+ 
+
 }
 
 .total-counter {
@@ -410,7 +411,7 @@ ul li {
 .circles.active {
     width: 340px;
     height: 340px;
-    font-size: 30px;
+    font-size: 40px;
     top: 0 !important;
     left: 0 !important;
     z-index: 1;
@@ -418,11 +419,17 @@ ul li {
     margin-left: -3px;
 }
 
+
+.circles.active  span {
+    font-size: 35px;
+    /* font-*/
+    opacity: .9;
+    
+  }
 #back-circle {
     position: relative;
-    top: -85px;
-
-    
+    top: -100px;
+    font-size: 45px;    
 }
 
 
