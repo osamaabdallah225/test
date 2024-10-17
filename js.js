@@ -227,6 +227,7 @@ circles.forEach((circle, index) => {
         circles.forEach(c => c.classList.remove('active'));
 
         // Add the 'active' class to the clicked circle
+
         circle.classList.add('active');
         document.getElementById('back-circle').classList.remove('disactive');
         document.getElementById("icon").style.display = "none";
@@ -236,8 +237,11 @@ circles.forEach((circle, index) => {
     });
 });
 
+
+
 // Function to increase the counter when a circle is clicked
 function ButtonClick(index) {
+
     counts1[index]++; // Increment the counter for the circle
     totalCount1++; // Increment the total count
 

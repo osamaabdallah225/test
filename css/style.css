@@ -378,7 +378,7 @@ ul li {
     background-color: #28cb88;
     border-radius: 50%;
     position: absolute;
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
     color: white;
     padding: 0px 10px 0px 10px;
@@ -391,6 +391,7 @@ ul li {
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
     cursor: pointer;
+    line-height: 1.5;
  
 
 }
@@ -423,6 +424,13 @@ ul li {
 .circles.active  span {
     font-size: 35px;
     /* font-*/
+    opacity: .9;
+    
+  }
+
+
+  span {
+    font-size: 18px;
     opacity: .9;
     
   }
