@@ -347,3 +347,9 @@ ul li {
     
 }
 
+.sebha-container {
+    border: 1px solid #FF9700;
+    border-radius: 10px;
+     margin-bottom: 20px; 
+     margin-top: 20px;
+}
