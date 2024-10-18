@@ -206,70 +206,72 @@ restoreButton.forEach((el) => {
 });
 
 
+//  الجزء الخاص بالتسابيح
 
+const circles = document.querySelectorAll('.circles');   // تعريف الدواير (الاذكار)
+const counters = document.querySelectorAll('.counter');  // تعريف العداد
+const img = document.querySelectorAll('.img');           // تعريف الصور اللي هتظهر داخل الدايرة لما تكبر
+const totalCounter = document.querySelector('.total-counter');  // العداد التوتال
+let counts = Array(circles.length).fill(0); // Array to store counts for each circle
+let totalCount = 0; // Total count
 
-const circles = document.querySelectorAll('.circles');
-const counters = document.querySelectorAll('.counter');
-const img = document.querySelectorAll('.img');
-const totalCounter = document.querySelector('.total-counter'); // Use querySelector to select the total counter element
-let counts1 = Array(circles.length).fill(0); // Array to store counts for each circle
-let totalCount1 = 0; // Total count
-
+// عندما يتم النقر على زر العودة
 document.getElementById('back-circle').addEventListener('click', () => {
-    // Remove the 'active' class from all circles
-    document.getElementById('back-circle').classList.add('disactive');
-    document.getElementById("icon").style.display = "block";
+document.getElementById('back-circle').classList.add('disactive');   // اخفاء زر العودة
+document.getElementById("icon").style.display = "block";  // اظهار ايقونة التصفير 
 });
 
+// إضافة مستمعات الضغط على الدوائر
 circles.forEach((circle, index) => {
     circle.addEventListener('click', () => {
-        // Remove the 'active' class from all circles
-        circles.forEach(c => c.classList.remove('active'));
+        // إذا كانت الدائرة غير نشطة (صغيرة)، قم بتكبيرها فقط
+        if (!circle.classList.contains('active')) {
+            // إزالة الكلاس 'active' من جميع الدوائر الأخرى
+            // circles.forEach(c => c.classList.remove('active'));
 
-        // Add the 'active' class to the clicked circle
-        circle.classList.add('active');
+            // إضافة الكلاس 'active' لهذه الدائرة لجعلها كبيرة
+            circle.classList.add('active');
 
-        // Hide all images first
-        img.forEach(i => i.style.display = "none");
+            // إخفاء جميع الصور أولاً
+            img.forEach(i => i.style.display = "none");
 
-        // Show the image related to the clicked circle only
-        if (img[index]) {
-            img[index].style.display = "block";
+            // عرض الصورة الخاصة بهذه الدائرة
+            if (img[index]) {
+                img[index].style.display = "block";
+            }
+
+            // جعل زر الرجوع مرئي
+            document.getElementById('back-circle').classList.remove('disactive');
+            document.getElementById("icon").style.display = "none";  // اخفاء ايقونة التصفير
+        } else {
+            // إذا كانت الدائرة نشطة (كبرت)، زيادة العداد
+            ButtonClick(index); // زيادة العداد فقط إذا كانت نشطة
         }
-
-        document.getElementById('back-circle').classList.remove('disactive');
-        document.getElementById("icon").style.display = "none";
-
-        // Increase the counter for the active circle
-        ButtonClick(index);
     });
 });
 
-// Function to increase the counter when a circle is clicked
+// دالة لزيادة العداد
 function ButtonClick(index) {
-    counts1[index]++; // Increment the counter for the circle
-    totalCount1++; // Increment the total count
+    counts[index]++; // زيادة العداد لهذه الدائرة
+    totalCount++; // زيادة العد الكلي
 
-    // Update the individual counter in the DOM
-    counters[index].innerText = counts1[index];
+    // تحديث العداد الفردي في الـ DOM
+    counters[index].innerText = counts[index];
 
-    // Update the total counter in the DOM
-    totalCounter.innerText = totalCount1; // Correctly update total counter
+    // تحديث العد الكلي في الـ DOM
+    totalCounter.innerText = totalCount;
 }
 
-// Function to reset circles when 'back-circle' is clicked
+// دالة لإعادة تعيين الدوائر عندما يتم النقر على زر 'back-circle'
 document.getElementById('back-circle').addEventListener('click', () => {
-    // Remove the 'active' class from all circles
-    circles.forEach(c => c.classList.remove('active'));
-    
-    // Hide all images
-    img.forEach(i => i.style.display = "none");
+    circles.forEach(c => c.classList.remove('active')); // إزالة الكلاس 'active' من جميع الدوائر
+    img.forEach(i => i.style.display = "none"); // إخفاء جميع الصور
 });
 
-// دالة لإعادة القيم إلى حالتها الافتراضية
+// دالة لإعادة القيم إلى حالتها الافتراضية عند الضغط على زر إعادة التعيين
 document.getElementById("icon").addEventListener("click", function () {
-    counts1.fill(0); // إعادة جميع العدادات إلى 0
-    totalCount1 = 0; // إعادة العد الكلي إلى 0
+    counts.fill(0); // إعادة جميع العدادات إلى 0
+    totalCount = 0; // إعادة العد الكلي إلى 0
     totalCounter.innerText = 0;
 
     // إعادة تعيين النصوص
@@ -279,6 +281,11 @@ document.getElementById("icon").addEventListener("click", function () {
 
     // إخفاء جميع الصور بعد إعادة التعيين
     img.forEach(i => i.style.display = "none");
+
+    // إعادة تعيين الدوائر إلى حالتها الأصلية
+    circles.forEach(c => {
+        c.classList.remove('active');
+    });
 });
 
 

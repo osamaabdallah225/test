@@ -387,9 +387,9 @@ ul li {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    -webkit-transition: all 0.1s linear;
-    -moz-transition: all 0.1s linear;
-    transition: all 0.1s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    transition: all 0.2s linear;
     cursor: pointer;
     line-height: 1.5;
     user-select: none;
