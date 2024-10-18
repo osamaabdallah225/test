@@ -208,18 +208,18 @@ restoreButton.forEach((el) => {
 
 
 
-// تعريف الأزرار والعدادات-- الجزء الخاص بالتسابيح
-
 const circles = document.querySelectorAll('.circles');
 const counters = document.querySelectorAll('.counter');
+const img = document.querySelectorAll('.img');
 const totalCounter = document.querySelector('.total-counter'); // Use querySelector to select the total counter element
 let counts1 = Array(circles.length).fill(0); // Array to store counts for each circle
 let totalCount1 = 0; // Total count
+
 document.getElementById('back-circle').addEventListener('click', () => {
     // Remove the 'active' class from all circles
     document.getElementById('back-circle').classList.add('disactive');
     document.getElementById("icon").style.display = "block";
-})
+});
 
 circles.forEach((circle, index) => {
     circle.addEventListener('click', () => {
@@ -227,8 +227,16 @@ circles.forEach((circle, index) => {
         circles.forEach(c => c.classList.remove('active'));
 
         // Add the 'active' class to the clicked circle
-
         circle.classList.add('active');
+
+        // Hide all images first
+        img.forEach(i => i.style.display = "none");
+
+        // Show the image related to the clicked circle only
+        if (img[index]) {
+            img[index].style.display = "block";
+        }
+
         document.getElementById('back-circle').classList.remove('disactive');
         document.getElementById("icon").style.display = "none";
 
@@ -237,11 +245,8 @@ circles.forEach((circle, index) => {
     });
 });
 
-
-
 // Function to increase the counter when a circle is clicked
 function ButtonClick(index) {
-
     counts1[index]++; // Increment the counter for the circle
     totalCount1++; // Increment the total count
 
@@ -256,6 +261,9 @@ function ButtonClick(index) {
 document.getElementById('back-circle').addEventListener('click', () => {
     // Remove the 'active' class from all circles
     circles.forEach(c => c.classList.remove('active'));
+    
+    // Hide all images
+    img.forEach(i => i.style.display = "none");
 });
 
 // دالة لإعادة القيم إلى حالتها الافتراضية
@@ -267,104 +275,10 @@ document.getElementById("icon").addEventListener("click", function () {
     // إعادة تعيين النصوص
     counters.forEach((span) => {
         span.innerText = "0"; // إعادة النص إلى فارغ
-        // span.style.color = "black";
     });
 
-});
-
-
-
-
-
-
-
-
-
-
-
-// // تعريف الأزرار والعدادات-- الجزء الخاص بالتسابيح
-
-// const buttons = document.querySelectorAll('.button-all'); // جميع الأزرار
-// const restButtons = document.querySelectorAll(".sebha-class"); // زر التصفير
-// const spans = document.querySelectorAll('.block-all'); // جميع العناصر التي ستعرض العدادات
-// let counts = Array(buttons.length).fill(0); // مصفوفة لتخزين العدادات لكل زر
-// let totalCount = 0; // العد الكلي
-
-// // دالة لزيادة العداد عند النقر على زر
-// function handleButtonClick(index) {
-//     counts[index]++; // زيادة العداد الخاص بالزر
-//     totalCount++; // زيادة العد الكلي
-
-//     // تحديث النصوص في العناصر المناسبة
-//     spans[index].innerText = counts[index];
-//     spans[spans.length - 1].innerText = totalCount; // تحديث مجموع التسبيحات
-
-//     // تغيير لون الزر
-//     buttons[index].style.backgroundColor = "#4CB050";
-
-//     // تعطيل الزر إذا وصل إلى 100
-//     if (counts[index] >= 100) {
-//         // spans[index].style.color = "red";
-
-//     }
-// }
-
-// // دالة لتصفير العدادات
-// const resetCounter = function (index) {
-//     // تصفير العداد الخاص بالزر المحدد
-//     totalCount -= counts[index]; // خصم القيمة السابقة من العد الكلي
-//     counts[index] = 0; // تصفير العداد
-
-//     // تحديث النص في العنصر المناسب
-//     spans[index].innerText = 0;
-//     spans[spans.length - 1].innerText = totalCount; // تحديث مجموع التسبيحات
-
-//     // إعادة تعيين لون الزر
-//     buttons[index].style.backgroundColor = ""; // إعادة اللون الافتراضي
-// };
-
-// // إضافة الأحداث لكل زر
-// buttons.forEach((button, index) => {
-//     button.addEventListener("click", () => handleButtonClick(index));
-// });
-
-// // إضافة حدث لزر تصفير العدادات
-// restButtons.forEach((button, index) => {
-//     button.addEventListener("click", () => resetCounter(index));
-// });
-
-
-
-
-// // دالة لإعادة القيم إلى حالتها الافتراضية
-// document.getElementById("icon").addEventListener("click", function () {
-//     counts.fill(0); // إعادة جميع العدادات إلى 0
-//     totalCount = 0; // إعادة العد الكلي إلى 0
-
-//     // إعادة تعيين النصوص
-//     spans.forEach((span) => {
-//         span.innerText = "0"; // إعادة النص إلى فارغ
-//         // span.style.color = "black";
-//     });
-
-// });
-
-// *********************************************************
-// اظهار واخفاء التول تب عند الضغط علي الايقونة
-
-document.querySelectorAll(".tooltip").forEach((el) => {
-    el.addEventListener("click", function () {
-        // ابحث عن العنصر .tooltiptext داخل العنصر الذي تم النقر عليه
-        const tooltipText = el.querySelector(".tooltiptext");
-
-        // إذا كانت العنصر .tooltiptext مخفية، اجعلها مرئية
-        if (tooltipText.style.display === "none" || tooltipText.style.display === "") {
-            tooltipText.style.display = "block";
-        } else {
-            // إذا كانت مرئية بالفعل، اخفيها
-            tooltipText.style.display = "none";
-        }
-    });
+    // إخفاء جميع الصور بعد إعادة التعيين
+    img.forEach(i => i.style.display = "none");
 });
 
 
