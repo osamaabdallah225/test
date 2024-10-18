@@ -594,14 +594,22 @@ if (window.innerWidth < 600) {
 // دالة تشيك علي التحديث
 // ممكن يحل محل الطريقة دي في التحديث وهي query parameters -- ?v=1.0.5">
 
+
+if (localStorage.getItem("update") === null) {
+    localStorage.setItem("update", "1.7.0");
+} 
+else  {
+    checkUpdateNumber()
+}
+
 function checkUpdateNumber() {
     // تعيين نسخة جديدة للتطبيق في localStorage
-    const appVersion = '1.6.0';
+    const appVersion = '1.7.0';
     const savedVersion = localStorage.getItem('appVersion');
 
     if (savedVersion !== appVersion) {
         // مسح البيانات المؤقتة أو الكاش الخاص بالتطبيق فقط (وليس كل localStorage)
-        alert("تم عمل تحديث للأصدار");
+        alert(" تم تحديث الاصدار - تم تحديث تاب تسابيح  ");
         window.location.reload();
         localStorage.removeItem('temporaryData');
         localStorage.setItem('appVersion', appVersion);  // تحديث بالقيمة الجديدة للأصدار
